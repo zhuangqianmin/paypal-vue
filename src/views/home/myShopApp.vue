@@ -12,7 +12,7 @@
           <div style="font-size: 30px;margin-top: 20px;">¥{{ money }} JPY</div>
           <div style="font-size: 20px;margin-top: 30px;">BD</div>
           <div><Button class="button-info" isSelected size="large" @click="changPic(50)" :type="butArr.but4">¥50</Button><Button class="button-info" size="large" @click="changPic(30)" :type="butArr.but3">¥30</Button><Button class="button-info" size="large" @click="changPic(20)" :type="butArr.but2">¥20</Button></div>
-          <div><Button class="button-info" size="large" @click="changPic(0.01)" :type="butArr.but1">¥0.01</Button></div>
+          <div><Button class="button-info" size="large" @click="changPic(1)" :type="butArr.but1">¥1</Button></div>
           <div style="margin-top: 20px;">数量</div>
           <div><Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
           <div style="">
@@ -47,22 +47,7 @@ export default {
       loading: false
     };
   },
-  mounted () {
-    if (this.isMobile()) {
-      const { origin, pathname, search } = window.location;
-      console.log(origin);
-      console.log(pathname);
-      console.log(`${origin}/app/${search}`);
-      window.location.href = `${origin}/app/${search}`;
-    }
-  },
   methods: {
-    isMobile () {
-      const flag = navigator.userAgent.match(
-        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
-      );
-      return flag;
-    },
     changPic(pic){
       this.pic = pic;
       this.money = this.num*this.pic;

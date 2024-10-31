@@ -10,6 +10,21 @@ export default new Router({
       path: '/',
       component: () =>
         import('@/views/home/myShop.vue')
+    },
+    {
+      path: '/app',
+      component: () =>
+        import('@/views/home/myShopApp.vue')
+    },
+    {
+      path: '/paypal/success',
+      component: () =>
+        import('@/views/home/paySuccess.vue')
+    },
+    {
+      path: '/paypal/cancel',
+      component: () =>
+        import('@/views/home/payError.vue')
     }
   ]
 });
