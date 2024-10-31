@@ -66,7 +66,7 @@ export default {
     changPic(pic){
       this.pic = pic;
       this.money = this.num*this.pic;
-      if (pic == 10) {
+      if (pic == 1) {
         this.butArr.but1 = "primary";
         this.butArr.but2 = "default";
         this.butArr.but3 = "default";
