@@ -14,7 +14,7 @@
           <div><Button class="button-info" isSelected size="large" @click="changPic(50)" :type="butArr.but4">¥50</Button><Button class="button-info" size="large" @click="changPic(30)" :type="butArr.but3">¥30</Button><Button class="button-info" size="large" @click="changPic(20)" :type="butArr.but2">¥20</Button></div>
           <div><Button class="button-info" size="large" @click="changPic(1)" :type="butArr.but1">¥1</Button></div>
           <div style="margin-top: 20px;">数量</div>
-          <div><Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
+          <div><Input type="number" @on-change="changNum(num)" @on-keypress="allowNum()" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
           <div style="">
             <Button type="success" class="button-info" size="large" @click="payMoney()" long>
               <span v-if="!loading">
@@ -92,7 +92,16 @@ export default {
       }
     },
     changNum(num){
+      if (num < 0) {
+        this.num = 1;
+      }
       this.money = num*this.pic;
+    },
+    allowNum(event){
+      const char = String.fromCharCode(event.which);
+      if (!/[0-9]/.test(char)) {
+          event.preventDefault();
+      }
     },
     payMoney(){
       let _this =this;
