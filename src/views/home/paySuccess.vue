@@ -3,10 +3,11 @@
     <div class="content">
       <div class="text-wrap">
         <div>
-          <span class="code">支払いに成功しました</span>
+          <span v-if="loading" class="code">{{ msg }}</span>
+          <span v-else class="code">支払い中......</span>
         </div>
         <div>
-          <Button type="success" size="large" @click="goBakc()">GO BACK</Button>
+          <Button v-if="loading" type="success" size="large" @click="goBakc()">GO BACK</Button>
         </div>
       </div>
     </div>
@@ -14,7 +15,37 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+  data () {
+    return {
+      msg:"",
+      loading: false
+    };
+  },
+  mounted() {
+    this.loading = false;
+    let paymentId = this.$route.query.paymentId; // John
+    let payerId = this.$route.query.PayerID; // 30
+    axios.post('/paypalShop/payment/execute', {
+      "paymentId":paymentId,
+      "payerId":payerId
+    })
+    .then(response => {
+        // 处理响应
+        console.log(response.data);
+        this.loading = true;
+        if (response.data.code == 0) {
+          this.msg = "支払いに成功しました";
+        } else {
+          this.msg = "支払い失敗";
+        }
+    })
+    .catch(error => {
+      // 处理错误
+      console.error(error);
+    });
+  },
   methods: {
     isMobile () {
       const flag = navigator.userAgent.match(

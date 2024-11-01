@@ -110,7 +110,7 @@ export default {
       }
       console.log(_this.money)
       if (_this.money == 0) {
-        alert("金額を選択してください！");
+        this.$Message.warning('金額を選択してください！');
         return;
       }
       this.loading = true;
