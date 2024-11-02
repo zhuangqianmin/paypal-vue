@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "jsencrypt": "^3.3.2",
     "less": "^4.2.0",
     "less-loader": "^4.1.0",
     "view-design": "^4.4.0",
