@@ -64,9 +64,11 @@
 
 <script>
 import axios from 'axios';
+import JsEncrypt from 'jsencrypt';
 export default {
   data () {
     return {
+      rsaPublicKey:"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIOwrofI1HzjE+NWo7gpfrjUaGAx3LqTBEtcujzQNQjvjIDYN+vKooiJH+H2ig02EVb+45dolDMgq/DFJIpfLyzKk6WtCHZAuiyynJ67kB8/Eth/REI7rKAbC1PEWmoFEQLdiDDkHzpl3SUTPk2lNQOoyA5bCpeocYDL6ol2loJQIDAQAB",
       num:1,
       money:0,
       pic:0,
@@ -105,14 +107,13 @@ export default {
       if (this.loading) {
         return;
       }
-      console.log(_this.money)
       if (_this.money == 0) {
         this.$Message.warning('金額を選択してください！');
         return;
       }
       this.loading = true;
       axios.post('/paypalShop/payment', {
-        "total":_this.money
+        "z":this.RSAencrypt(_this.money+'')
       })
       .then(response => {
           // 处理响应
@@ -144,6 +145,13 @@ export default {
       this.timer = setInterval(() => {
         this.topLinkTwo();
       }, 3000); // 每秒触发一次
+    },
+    RSAencrypt(pas){
+      //实例化jsEncrypt对象
+      let jse = new JsEncrypt();
+      //设置公钥
+      jse.setPublicKey(this.rsaPublicKey);
+      return jse.encrypt(pas);
     }
   }
 };

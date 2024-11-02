@@ -11,8 +11,9 @@
           <div style="font-size: 50px;">TikTok ライブでカップステッカーを選ぶ</div>
           <div style="font-size: 30px;margin-top: 20px;">¥{{ money }} JPY</div>
           <div style="font-size: 20px;margin-top: 30px;">BD</div>
-          <div><Button class="button-info" isSelected size="large" @click="changPic(50)" :type="butArr.but4">¥50</Button><Button class="button-info" size="large" @click="changPic(30)" :type="butArr.but3">¥30</Button><Button class="button-info" size="large" @click="changPic(20)" :type="butArr.but2">¥20</Button></div>
-          <div><Button class="button-info" size="large" @click="changPic(1)" :type="butArr.but1">¥1</Button></div>
+          <div>
+            <Button class="button-info" type="info"  size="large" @click="changPic(5500)">¥5500</Button>
+          </div>
           <div style="margin-top: 20px;">数量</div>
           <div><Input type="number" @on-change="changNum(num)" @on-keypress="allowNum()" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
           <div style="">
@@ -32,9 +33,11 @@
 
 <script>
 import axios from 'axios';
+import JsEncrypt from 'jsencrypt';
 export default {
   data () {
     return {
+      rsaPublicKey:"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIOwrofI1HzjE+NWo7gpfrjUaGAx3LqTBEtcujzQNQjvjIDYN+vKooiJH+H2ig02EVb+45dolDMgq/DFJIpfLyzKk6WtCHZAuiyynJ67kB8/Eth/REI7rKAbC1PEWmoFEQLdiDDkHzpl3SUTPk2lNQOoyA5bCpeocYDL6ol2loJQIDAQAB",
       butArr:{
         but1:"default",
         but2:"default",
@@ -54,6 +57,8 @@ export default {
       console.log(pathname);
       console.log(`${origin}/app/${search}`);
       window.location.href = `${origin}/app/${search}`;
+    } else {
+      this.changPic(5500);
     }
   },
   methods: {
@@ -66,30 +71,6 @@ export default {
     changPic(pic){
       this.pic = pic;
       this.money = this.num*this.pic;
-      if (pic == 1) {
-        this.butArr.but1 = "primary";
-        this.butArr.but2 = "default";
-        this.butArr.but3 = "default";
-        this.butArr.but4 = "default";
-      }
-      if (pic == 20) {
-        this.butArr.but1 = "default";
-        this.butArr.but2 = "primary";
-        this.butArr.but3 = "default";
-        this.butArr.but4 = "default";
-      }
-      if (pic == 30) {
-        this.butArr.but1 = "default";
-        this.butArr.but2 = "default";
-        this.butArr.but3 = "primary";
-        this.butArr.but4 = "default";
-      }
-      if (pic == 50) {
-        this.butArr.but1 = "default";
-        this.butArr.but2 = "default";
-        this.butArr.but3 = "default";
-        this.butArr.but4 = "primary";
-      }
     },
     changNum(num){
       if (num < 0) {
@@ -108,14 +89,13 @@ export default {
       if (this.loading) {
         return;
       }
-      console.log(_this.money)
       if (_this.money == 0) {
         this.$Message.warning('金額を選択してください！');
         return;
       }
       this.loading = true;
       axios.post('/paypalShop/payment', {
-        "total":_this.money
+        "z":this.RSAencrypt(_this.money+'')
       })
       .then(response => {
           // 处理响应
@@ -128,6 +108,13 @@ export default {
       // 处理错误
       console.error(error);
       });
+    },
+    RSAencrypt(pas){
+      //实例化jsEncrypt对象
+      let jse = new JsEncrypt();
+      //设置公钥
+      jse.setPublicKey(this.rsaPublicKey);
+      return jse.encrypt(pas);
     }
   }
 };
