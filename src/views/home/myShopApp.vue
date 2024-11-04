@@ -4,9 +4,9 @@
       <div style="height: 53px;display: flex; justify-content: space-between; align-items: center;background-color:rgba(234,246,251,1);
 ">
         <Icon style="margin-left: 15px;" @click="topLinkOne()" type="ios-arrow-back" size = "15"/>
-        <p class="announcement-bar__message">
-          {{ defaultMsg }}
-        </p>
+        <a href="https://line.me/ti/p/Ajhkq-KPnj" target="_blank">
+          <p class="announcement-bar__message">{{ defaultMsg }}</p>
+        </a>
         <Icon style="margin-right: 15px;" @click="topLinkOne()" type="ios-arrow-forward" size = "15"/>
       </div>
       <div>
@@ -179,7 +179,7 @@ export default {
     background-position: center;              /* 背景居中 */
     width: 27%;                            /* 设置宽度为视口宽度 */
     height: auto;                            /* 高度自适应 */
-    margin: 10px 0 10px 0;
+    height: 10%;
 }
 .pgimg {
   background-repeat: no-repeat;            /* 防止背景重复 */
