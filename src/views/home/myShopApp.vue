@@ -45,7 +45,7 @@
           </div>
           <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">数量</div>
           <div style="font-size: 20px;text-align: left;margin-left: 10px;margin-top: 5px;">
-            <Input type="number" @on-change="changNum(num)" @on-keypress="allowNum()" v-model="num" size="large" placeholder="1" style="width: 150px"/>
+            <Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/>
           </div>
           <div style="text-align: center;margin: 0 10px 0 10px;">
             <Button type="success" style="text-align: center;width: 100%;margin-top: 20px;margin-bottom: 50px;" class="button-info" size="large" @click="payMoney()" long>
@@ -91,16 +91,17 @@ export default {
       this.money = this.num*this.pic;
     },
     changNum(num){
+      const regex = /^[1-9]\d*$/;
+      if (!regex.test(num)) {
+        this.num = 1;
+      }
       if (num < 0) {
         this.num = 1;
       }
-      this.money = num*this.pic;
-    },
-    allowNum(event){
-      const char = String.fromCharCode(event.which);
-      if (!/[0-9]/.test(char)) {
-          event.preventDefault();
+      if(this.num == undefined || this.num == 0){
+        this.num = 1;
       }
+      this.money = this.num*this.pic;
     },
     payMoney(){
       let _this =this;

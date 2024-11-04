@@ -7,7 +7,7 @@
           <span v-else class="code">支払い中......</span>
         </div>
         <div>
-          <Button v-if="loading" type="success" size="large" @click="goBakc()">GO BACK</Button>
+          <Button v-if="loading" type="success" size="large" @click="goBakc()">リターンマッチ</Button>
         </div>
       </div>
     </div>
