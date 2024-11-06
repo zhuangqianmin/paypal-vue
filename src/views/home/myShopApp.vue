@@ -41,11 +41,13 @@
           </div>
           <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">BD</div>
           <div style="text-align: left;margin-left: 10px;">
-            <Button class="button-info" type="info" size="large">¥5500</Button>
+            <Button class="button-info" size="large" @click="changPic(5500)" :type="butArr.but1">¥5500</Button>
+            <Button class="button-info" size="large" @click="changPic(110)" :type="butArr.but2">¥110</Button>
+            <Button class="button-info" size="large" @click="changPic(180)" :type="butArr.but3">¥180</Button>
           </div>
           <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">数量</div>
           <div style="font-size: 20px;text-align: left;margin-left: 10px;margin-top: 5px;">
-            <Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/>
+            <Input type="number" @on-change="changNum(num)" v-model="num" size="large" maxlength="10" placeholder="1" style="width: 150px"/>
           </div>
           <div style="text-align: center;margin: 0 10px 0 10px;">
             <Button type="success" style="text-align: center;width: 100%;margin-top: 20px;margin-bottom: 50px;" class="button-info" size="large" @click="payMoney()" long>
@@ -69,6 +71,11 @@ export default {
   data () {
     return {
       rsaPublicKey:"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIOwrofI1HzjE+NWo7gpfrjUaGAx3LqTBEtcujzQNQjvjIDYN+vKooiJH+H2ig02EVb+45dolDMgq/DFJIpfLyzKk6WtCHZAuiyynJ67kB8/Eth/REI7rKAbC1PEWmoFEQLdiDDkHzpl3SUTPk2lNQOoyA5bCpeocYDL6ol2loJQIDAQAB",
+            butArr:{
+        but1:"default",
+        but2:"default",
+        but3:"default"
+      },
       num:1,
       money:0,
       pic:0,
@@ -89,6 +96,21 @@ export default {
     changPic(pic){
       this.pic = pic;
       this.money = this.num*this.pic;
+      if (pic == 5500) {
+        this.butArr.but1 = "info";
+        this.butArr.but2 = "default";
+        this.butArr.but3 = "default";
+      }
+      if (pic == 110) {
+        this.butArr.but1 = "default";
+        this.butArr.but2 = "info";
+        this.butArr.but3 = "default";
+      }
+      if (pic == 180) {
+        this.butArr.but1 = "default";
+        this.butArr.but2 = "default";
+        this.butArr.but3 = "info";
+      }
     },
     changNum(num){
       const regex = /^[1-9]\d*$/;
@@ -222,7 +244,7 @@ export default {
 }
 .button-info{
   size: large;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-top: 5px;
   align-items: center;    /* 垂直居中 */
 }

@@ -12,10 +12,12 @@
           <div style="font-size: 30px;margin-top: 20px;">¥{{ money }} JPY</div>
           <div style="font-size: 20px;margin-top: 30px;">BD</div>
           <div>
-            <Button class="button-info" type="info"  size="large" @click="changPic(5500)">¥5500</Button>
+            <Button class="button-info" size="large" @click="changPic(5500)" :type="butArr.but1">¥5500</Button>
+            <Button class="button-info" size="large" @click="changPic(110)" :type="butArr.but2">¥110</Button>
+            <Button class="button-info" size="large" @click="changPic(180)" :type="butArr.but3">¥180</Button>
           </div>
           <div style="margin-top: 20px;">数量</div>
-          <div><Input type="number" @on-change="changNum(num)" @on-keypress="allowNum()" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
+          <div><Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
           <div style="">
             <Button type="success" class="button-info" size="large" @click="payMoney()" long>
               <span v-if="!loading">
@@ -41,8 +43,7 @@ export default {
       butArr:{
         but1:"default",
         but2:"default",
-        but3:"default",
-        but4:"default"
+        but3:"default"
       },
       num:1,
       money:0,
@@ -71,6 +72,21 @@ export default {
     changPic(pic){
       this.pic = pic;
       this.money = this.num*this.pic;
+      if (pic == 5500) {
+        this.butArr.but1 = "info";
+        this.butArr.but2 = "default";
+        this.butArr.but3 = "default";
+      }
+      if (pic == 110) {
+        this.butArr.but1 = "default";
+        this.butArr.but2 = "info";
+        this.butArr.but3 = "default";
+      }
+      if (pic == 180) {
+        this.butArr.but1 = "default";
+        this.butArr.but2 = "default";
+        this.butArr.but3 = "info";
+      }
     },
     changNum(num){
       if (num < 0) {
