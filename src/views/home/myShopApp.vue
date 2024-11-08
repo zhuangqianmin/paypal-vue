@@ -44,6 +44,7 @@
             <Button class="button-info" size="large" @click="changPic(5500)" :type="butArr.but1">¥5500</Button>
             <Button class="button-info" size="large" @click="changPic(110)" :type="butArr.but2">¥110</Button>
             <Button class="button-info" size="large" @click="changPic(180)" :type="butArr.but3">¥180</Button>
+            <Button class="button-info" size="large" @click="changPic(10)" :type="butArr.but4">¥10</Button>
           </div>
           <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">数量</div>
           <div style="font-size: 20px;text-align: left;margin-left: 10px;margin-top: 5px;">
@@ -71,10 +72,11 @@ export default {
   data () {
     return {
       rsaPublicKey:"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIOwrofI1HzjE+NWo7gpfrjUaGAx3LqTBEtcujzQNQjvjIDYN+vKooiJH+H2ig02EVb+45dolDMgq/DFJIpfLyzKk6WtCHZAuiyynJ67kB8/Eth/REI7rKAbC1PEWmoFEQLdiDDkHzpl3SUTPk2lNQOoyA5bCpeocYDL6ol2loJQIDAQAB",
-            butArr:{
+      butArr:{
         but1:"default",
         but2:"default",
-        but3:"default"
+        but3:"default",
+        but4:"default"
       },
       num:1,
       money:0,
@@ -100,16 +102,25 @@ export default {
         this.butArr.but1 = "info";
         this.butArr.but2 = "default";
         this.butArr.but3 = "default";
+        this.butArr.but4 = "default";
       }
       if (pic == 110) {
         this.butArr.but1 = "default";
         this.butArr.but2 = "info";
         this.butArr.but3 = "default";
+        this.butArr.but4 = "default";
       }
       if (pic == 180) {
         this.butArr.but1 = "default";
         this.butArr.but2 = "default";
         this.butArr.but3 = "info";
+        this.butArr.but4 = "default";
+      }
+      if (pic == 10) {
+        this.butArr.but1 = "default";
+        this.butArr.but2 = "default";
+        this.butArr.but3 = "default";
+        this.butArr.but4 = "info";
       }
     },
     changNum(num){
