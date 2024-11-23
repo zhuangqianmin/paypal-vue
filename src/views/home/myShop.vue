@@ -5,7 +5,7 @@
     </div>
     <div class="center">
         <div class="pg-left">
-          <img class="pgimg-left" src="@/assets/img/left.png" />
+          <img class="pgimg-left" src="@/assets/img/left.jpg" />
         </div>
         <div class="pg-right">
           <div style="font-size: 50px;">TikTok ライブでカップステッカーを選ぶ</div>

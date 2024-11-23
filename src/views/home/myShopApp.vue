@@ -9,9 +9,9 @@
         </a>
         <Icon style="margin-right: 15px;" @click="topLinkOne()" type="ios-arrow-forward" size = "15"/>
       </div>
-      <div>
+      <!-- <div>
         <img class="iconimg" src="@/assets/img/shop-icon.png" />
-      </div>
+      </div> -->
       <div style="display: flex; justify-content: space-between; align-items: center;background-color:rgba(212,201,209,1);height: 60px;
 ">
         <Icon style="margin-left: 15px;" @click="topLinkTwo()" type="ios-arrow-back" size = "15"/>
@@ -27,7 +27,7 @@
     <div class="center">
         <div>
           <div style="text-align: center;margin-top:20px;margin-bottom: 10px;">
-            <img style="width: 80%;" class="pgimg-left" src="@/assets/img/left.png" />
+            <img style="width: 80%;" class="pgimg-left" src="@/assets/img/left.jpg" />
           </div>
           <div style="font-size: 10px;text-align: left;margin-left: 10px;">A R T E T R I B E</div>
           <div style="font-size: 35px;text-align: left;margin-left: 10px;">TikTok ライブでカップステッカーを選ぶ</div>
