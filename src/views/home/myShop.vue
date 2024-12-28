@@ -8,7 +8,7 @@
           <img class="pgimg-left" src="@/assets/img/left.jpg" />
         </div>
         <div class="pg-right">
-          <div style="font-size: 50px;">TikTok ライブでカップステッカーを選ぶ</div>
+          <div style="font-size: 50px;">{{ $t("goods.name") }}</div>
           <div style="font-size: 30px;margin-top: 20px;">¥{{ money }} JPY</div>
           <div style="font-size: 20px;margin-top: 30px;">BD</div>
           <div>
@@ -17,7 +17,7 @@
             <Button class="button-info" size="large" @click="changPic(180)" :type="butArr.but3">¥180</Button>
             <Button class="button-info" size="large" @click="changPic(10)" :type="butArr.but4">¥10</Button>
           </div>
-          <div style="margin-top: 20px;">数量</div>
+          <div style="margin-top: 20px;">{{ $t("goods.count") }}</div>
           <div><Input type="number" @on-change="changNum(num)" v-model="num" size="large" placeholder="1" style="width: 150px"/></div>
           <div style="">
             <Button type="success" class="button-info" size="large" @click="payMoney()" long>

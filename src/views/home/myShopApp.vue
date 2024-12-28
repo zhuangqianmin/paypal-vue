@@ -30,14 +30,14 @@
             <img style="width: 80%;" class="pgimg-left" src="@/assets/img/left.jpg" />
           </div>
           <div style="font-size: 10px;text-align: left;margin-left: 10px;">A R T E T R I B E</div>
-          <div style="font-size: 35px;text-align: left;margin-left: 10px;">TikTok ライブでカップステッカーを選ぶ</div>
+          <div style="font-size: 35px;text-align: left;margin-left: 10px;">{{ $t("goods.name") }}</div>
           <div style="font-size: 17px;text-align: left;margin-left: 10px;">
             <span style="font-weight: bold;">¥{{ money }} JPY&nbsp;&nbsp;</span>
-            <span style="background-color: rgba(201,195,251,1);margin-left: 10px;border-radius: 5px;" >&nbsp;&nbsp;セール&nbsp;&nbsp;</span>
+            <span style="background-color: rgba(201,195,251,1);margin-left: 10px;border-radius: 5px;" >&nbsp;&nbsp;{{ $t("phoneGoods.text1") }}&nbsp;&nbsp;</span>
           </div>
           <div style="text-align: left;margin-left: 10px;">
-            <span style="text-decoration: underline;">配送料</span>
-            <span>はチェックアウト時に計算されます。</span>
+            <span style="text-decoration: underline;">{{ $t("phoneGoods.text2") }}</span>
+            <span>{{ $t("phoneGoods.text3") }}</span>
           </div>
           <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">BD</div>
           <div style="text-align: left;margin-left: 10px;">
@@ -46,7 +46,7 @@
             <Button class="button-info" size="large" @click="changPic(180)" :type="butArr.but3">¥180</Button>
             <Button class="button-info" size="large" @click="changPic(10)" :type="butArr.but4">¥10</Button>
           </div>
-          <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">数量</div>
+          <div style="font-size: 15px;margin-top: 20px;text-align: left;margin-left: 10px;">{{ $t("goods.count") }}</div>
           <div style="font-size: 20px;text-align: left;margin-left: 10px;margin-top: 5px;">
             <Input type="number" @on-change="changNum(num)" v-model="num" size="large" maxlength="10" placeholder="1" style="width: 150px"/>
           </div>
@@ -82,12 +82,12 @@ export default {
       money:0,
       pic:0,
       loading: false,
-      defaultMsg:"📱お問い合わせはLINEで行ってください",
-      topLink1:"📱お問い合わせはLINEで行ってください",
+      defaultMsg:this.$t('phoneGoods.defaultMsg'),
+      topLink1:this.$t('phoneGoods.topLink1'),
       topLink2:"Welcome to our store",
-      defaultMsg1:"🚁5500円以上場合日本の全国的に送料無料.🚁",
-      topLink3:"🚁5500円以上場合日本の全国的に送料無料.🚁",
-      topLink4:"🌠アーティトライブでDIYに没頭しましょう - クラフト、つながり、創造"
+      defaultMsg1:this.$t('phoneGoods.defaultMsg1'),
+      topLink3:this.$t('phoneGoods.topLink3'),
+      topLink4:this.$t('phoneGoods.topLink4')
     };
   },
   mounted() {
